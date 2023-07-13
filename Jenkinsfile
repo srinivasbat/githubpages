@@ -6,26 +6,27 @@ pipeline {
   stages {
     stage('Deploy') {
       steps {
-        sh 'cp /root/workspace/pipeline-test/codedeploy-master/index.html /var/www/html/'
-        sh 'cp /root/workspace/pipeline-test/codedeploy-master/*.jpg /var/www/html/'
+        sh 'rm -rf /var/www/html/*' // Remove existing HTML and image files
+        sh 'cp /root/workspace/new-pipeline-test/index.html /var/www/html/'
+        sh 'cp /root/workspace/new-pipeline-test/*.jpg /var/www/html/'
       }
     }
     
     stage('BeforeInstall') {
       steps {
-        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/install_dependencies'
-        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/start_server'
-        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/install_dependencies'
+        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/start_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/stop_server'
         
-        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/install_dependencies'
-        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/start_server'
+        sh '/root/workspace/new-pipeline-test/scripts/install_dependencies'
+        sh '/root/workspace/new-pipeline-test/scripts/start_server'
       }
     }
     
     stage('ApplicationStop') {
       steps {
-        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
-        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/stop_server'
+        sh '/root/workspace/new-pipeline-test/scripts/stop_server'
       }
     }
   }
