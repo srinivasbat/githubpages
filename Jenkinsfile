@@ -14,12 +14,12 @@ pipeline {
     
     stage('BeforeInstall') {
       steps {
-        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/install_dependencies'
-        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/start_server'
-        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/stop_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/install_dependencies'
+        sh 'chmod +x /root/workspace/new-pipeline-test/start_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/stop_server'
         
-        sh '/root/workspace/new-pipeline-test/scripts/install_dependencies'
-        sh '/root/workspace/new-pipeline-test/scripts/start_server'
+        sh '/root/workspace/new-pipeline-test/install_dependencies'
+        sh '/root/workspace/new-pipeline-test/start_server'
       }
     }
     
