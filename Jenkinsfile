@@ -25,8 +25,8 @@ pipeline {
     
     stage('ApplicationStop') {
       steps {
-        sh 'chmod +x /root/workspace/new-pipeline-test/scripts/stop_server'
-        sh '/root/workspace/new-pipeline-test/scripts/stop_server'
+        sh 'chmod +x /root/workspace/new-pipeline-test/stop_server'
+        sh '/root/workspace/new-pipeline-test/stop_server'
       }
     }
   }
