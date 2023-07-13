@@ -8,7 +8,7 @@ pipeline {
       steps {
         sh 'rm -rf /var/www/html/*' // Remove existing HTML and image files
         sh 'cp /root/workspace/new-pipeline-test/index.html /var/www/html/'
-        sh 'cp /root/workspace/new-pipeline-test/*.jpg /var/www/html/'
+        sh 'cp -r /root/workspace/new-pipeline-test/images/*.png /var/www/html/'
       }
     }
     
