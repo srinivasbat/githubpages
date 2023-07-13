@@ -4,22 +4,28 @@ pipeline {
   }
   
   stages {
-    stage('BeforeInstall') {
+    stage('Deploy') {
       steps {
-        sh 'scripts/install_dependencies'
-        sh 'scripts/start_server'
+        sh 'cp /root/workspace/pipeline-test/codedeploy-master/index.html /var/www/html/'
+        sh 'cp /root/workspace/pipeline-test/codedeploy-master/*.jpg /var/www/html/'
       }
     }
     
-    stage('Deploy') {
+    stage('BeforeInstall') {
       steps {
-        sh 'cp $WORKSPACE/index.html /var/www/html/'
+        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/install_dependencies'
+        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/start_server'
+        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
+        
+        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/install_dependencies'
+        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/start_server'
       }
     }
     
     stage('ApplicationStop') {
       steps {
-        sh 'scripts/stop_server'
+        sh 'chmod +x /root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
+        sh '/root/workspace/pipeline-test/codedeploy-master/scripts/stop_server'
       }
     }
   }
